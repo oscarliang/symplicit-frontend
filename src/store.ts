@@ -10,7 +10,6 @@ import carsReducer from './ducks/cars';
 import globalReducer from './ducks/global';
 import LoginReducer, { LOG_OUT_ACTION } from './ducks/login';
 import permissionReducer from './ducks/permission';
-import { ENV } from './utils/env';
 import { merge } from './utils/utils';
 
 const ACTION_HYDRATE = 'HYDRATE';
@@ -34,7 +33,10 @@ const combinedReducer = combineReducers({
 export function createStore(configure?: (state: RootState) => RootState) {
   const middleware: [Redux.Middleware] = [thunk];
 
-  if (process.env.NODE_ENV !== 'production' && ENV.debugger) {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    process.env.NEXT_PUBLIC_DEBUGGER
+  ) {
     // add the previous state and next state info
     middleware.push(
       createLogger({

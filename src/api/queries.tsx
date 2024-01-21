@@ -1,9 +1,7 @@
-import { ENV } from '../utils/env';
-
 // eslint-disable-next-line max-len
-export const GRAHPQL_ENDPOINT = `http://${ENV.graphqlHost}:${ENV.graphqlPort}/graphql`;
+export const GRAHPQL_ENDPOINT = `http://${process.env.NEXT_PUBLIC_GRAPHQL_HOST}:${process.env.NEXT_PUBLIC_GRAPHQL_PORT}/graphql`;
 
-export const API_SSR_ENDPOINT = `http://${ENV.backendHost}:${ENV.restApiPort}`;
+export const API_SSR_ENDPOINT = `http://${process.env.NEXT_PUBLIC_BACKEND_HOST}:${process.env.NEXT_PUBLIC_BACKEND_PORT}`;
 
 export const GET_ALL_CARS = `
 {

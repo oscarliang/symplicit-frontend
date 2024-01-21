@@ -372,7 +372,8 @@ function HomepageContainer({
                 />
                 <FormText className='help-block'>
                   Please enter car price.
-                  <strong className="ml-2">Note</strong>: only allow input numbers
+                  <strong className='ml-2'>Note</strong>: only allow input
+                  numbers
                 </FormText>
               </Col>
             </FormGroup>
@@ -391,7 +392,8 @@ function HomepageContainer({
                 />
                 <FormText className='help-block'>
                   Please enter image url.
-                  <strong className="ml-2">Note</strong>: only allow web image url
+                  <strong className='ml-2'>Note</strong>: only allow web image
+                  url
                 </FormText>
               </Col>
             </FormGroup>

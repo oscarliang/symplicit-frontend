@@ -6,7 +6,10 @@ import * as React from 'react';
 function Footer() {
   return (
     <footer className='app-footer'>
-      <a className="mr-2" href='http://www.symplicit.com/'>Symplicit</a> &copy;  2024 creativeLabs.
+      <a className='mr-2' href='http://www.symplicit.com/'>
+        Symplicit
+      </a>{' '}
+      &copy; 2024 creativeLabs.
       <span className='float-right'>
         Powered by <a href='http://www.symplicit.com/'>Oscar</a>
       </span>
