@@ -1,0 +1,13 @@
+{
+	"data": {
+		"createCar":
+            {
+				"id": 290,
+				"brand": "PORSCHE",
+				"name": "Porsche 718",
+				"price": 78000,
+				"drive": "2wd",
+				"imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/16q1/665019/2016-audi-tts-test-review-car-and-driver-photo-665850-s-original.jpg"
+			}
+	}
+}

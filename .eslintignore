@@ -1,0 +1,4 @@
+**/*.d.ts
+**/mocks/*
+node_modules
+coverage

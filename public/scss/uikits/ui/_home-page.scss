@@ -1,0 +1,32 @@
+body {
+	.car-img {
+		height: 50px;
+	}
+
+	.form-group.required .form-control-label:after {
+		color: #d00;
+		content: "*";
+		position: absolute;
+		margin-left: 8px;
+		top: 2px;
+	}
+
+	.card-body {
+		.fa-times {
+			cursor: pointer;
+		}
+		table {
+			tr td {
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+@include respond-to(smartphone) {
+	.header {
+		.title {
+			font-size: 45px;
+		}
+	}
+}

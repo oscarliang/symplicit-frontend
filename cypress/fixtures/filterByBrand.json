@@ -1,0 +1,22 @@
+{
+	"data": {
+		"getCarByBrand": [
+			{
+				"id": 210,
+				"brand": "bmw",
+				"name": "2017 BMW M240i Coupe Automatic",
+				"price": 145000,
+				"drive": "2wd",
+				"imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/16q3/669461/2017-bmw-m240i-coupe-automatic-tested-review-car-and-driver-photo-670913-s-original.jpg?crop=1xw:1xh;center,center&resize=900:*"
+			},
+			{
+				"id": 220,
+				"brand": "bmw",
+				"name": "BMW 4-series News and Reviews",
+				"price": 130000,
+				"drive": "4wd|awd",
+				"imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/media/683956/2018-bmw-4-series-idrive-infotainment-review-car-and-driver-photo-683962-s-original.jpg?crop=1xw:1xh;center,center&resize=740:*"
+			}
+		]
+	}
+}

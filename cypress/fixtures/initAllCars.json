@@ -1,0 +1,82 @@
+{
+  "data": {
+    "allCars": [
+      {
+        "id": 100,
+        "brand": "porsche",
+        "name": "911 Carrera",
+        "price": 280000,
+        "drive": "awd",
+        "imageUrl": "http://files1.porsche.com/filestore/image/multimedia/none/991-2nd-c4s-modelimage-sideshot/model/15bd09cf-553b-11e5-8c32-0019999cd470;s25/porsche-model.png"
+      },
+      {
+        "id": 110,
+        "brand": "porsche",
+        "name": "Cayenne GTS",
+        "price": 170000,
+        "drive": "awd",
+        "imageUrl": "http://files3.porsche.com/filestore/image/multimedia/none/rd-2013-9pa-e2-2nd-gts-modelimage-sideshot/model/c287d350-5920-11e4-99aa-001a64c55f5c;s25/porsche-model.png"
+      },
+      {
+        "id": 120,
+        "brand": "porsche",
+        "name": "Panamera 4S",
+        "price": 320000,
+        "drive": "2wd|4wd",
+        "imageUrl": "http://files1.porsche.com/filestore/image/multimedia/none/970-g2-4s-modelimage-sideshot/model/a23b6da0-33b9-11e6-9225-0019999cd470;s25/porsche-model.png"
+      },
+      {
+        "id": 200,
+        "brand": "bmw",
+        "name": "Lightning Lap 2017: BMW M240i",
+        "price": 90000,
+        "drive": "2wd|4wd|awd",
+        "imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/17q3/685273/bmw-m240i-at-lightning-lap-2017-feature-car-and-driver-photo-687963-s-original.jpg?crop=1xw:1xh;center,center&resize=900:*"
+      },
+      {
+        "id": 210,
+        "brand": "bmw",
+        "name": "2017 BMW M240i Coupe Automatic",
+        "price": 145000,
+        "drive": "2wd",
+        "imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/16q3/669461/2017-bmw-m240i-coupe-automatic-tested-review-car-and-driver-photo-670913-s-original.jpg?crop=1xw:1xh;center,center&resize=900:*"
+      },
+      {
+        "id": 220,
+        "brand": "bmw",
+        "name": "BMW 4-series News and Reviews",
+        "price": 130000,
+        "drive": "4wd|awd",
+        "imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/media/683956/2018-bmw-4-series-idrive-infotainment-review-car-and-driver-photo-683962-s-original.jpg?crop=1xw:1xh;center,center&resize=740:*"
+      },
+      {
+        "id": 300,
+        "brand": "audi",
+        "name": "Audi S5 Auto quattro",
+        "price": 115000,
+        "drive": "2wd|4wd|awd",
+        "imageUrl": "https://hips.hearstapps.com/hmg-prod/images/2018-audi-a5-sportback-01-placement-1524499430.jpg?crop=1xw:1xh;center,center&resize=900:*"
+      },
+      {
+        "id": 310,
+        "brand": "audi",
+        "name": "Audi TT Sport Manual",
+        "price": 80000,
+        "drive": "2wd|4wd",
+        "imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/16q1/665019/2016-audi-tts-test-review-car-and-driver-photo-665850-s-original.jpg"
+      },
+      {
+        "id": 180,
+        "brand": "PORSCHE",
+        "name": "Porsche 718",
+        "price": 70000,
+        "drive": "2wd|4wd",
+        "imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/16q1/665019/2016-audi-tts-test-review-car-and-driver-photo-665850-s-original.jpg"
+      }
+    ]
+  },
+  "modules": {
+    "car_module": 15,
+    "search_module": 15
+  }
+}

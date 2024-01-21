@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CarsTable /> renders 1`] = `
+<div
+  class="col"
+>
+  <div
+    class="card"
+  >
+    <div
+      class="card-header"
+    >
+      <i
+        class="fa fa-align-justify"
+      />
+       All Cars
+    </div>
+    <div
+      class="card-body"
+    >
+      <div
+        class="table-responsive"
+      >
+        <table
+          class="table table-sm table-bordered table-striped table-hover"
+        >
+          <thead>
+            <tr>
+              <th>
+                Image
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                Brand
+              </th>
+              <th>
+                Model
+              </th>
+              <th>
+                Price
+              </th>
+              <th>
+                Delete
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class=""
+              data-testid="car-0"
+            >
+              <td>
+                <img
+                  alt="test1"
+                  class="rounded car-img animated bounceIn"
+                  src="https://images.carexpert.com.au/app/uploads/2023/09/BMW-i7-M70-xDrive_HERO-16x9-2.jpg"
+                />
+              </td>
+              <td>
+                test1
+              </td>
+              <td>
+                PORSCHE
+              </td>
+              <td>
+                2WD 4WD AWD 
+              </td>
+              <td
+                aria-label="price"
+              >
+                <span>
+                  $34,324
+                </span>
+              </td>
+              <td
+                aria-label="delete button"
+              >
+                <i
+                  class="fa fa-times"
+                />
+              </td>
+            </tr>
+            <tr
+              class=""
+              data-testid="car-1"
+            >
+              <td>
+                <img
+                  alt="test2"
+                  class="rounded car-img animated bounceIn"
+                  src="https://editorial.pxcrush.net/carsales/general/editorial/porsche-911-gts-0182.jpg?width=1024&height=683"
+                />
+              </td>
+              <td>
+                test2
+              </td>
+              <td>
+                PORSCHE
+              </td>
+              <td>
+                2WD 4WD AWD 
+              </td>
+              <td
+                aria-label="price"
+              >
+                <span>
+                  $4,545
+                </span>
+              </td>
+              <td
+                aria-label="delete button"
+              >
+                <i
+                  class="fa fa-times"
+                />
+              </td>
+            </tr>
+            <tr
+              class=""
+              data-testid="car-2"
+            >
+              <td>
+                <img
+                  alt="test3"
+                  class="rounded car-img animated bounceIn"
+                  src="https://images.carexpert.com.au/app/uploads/2023/09/BMW-i7-M70-xDrive_HERO-16x9-2.jpg"
+                />
+              </td>
+              <td>
+                test3
+              </td>
+              <td>
+                BMW
+              </td>
+              <td>
+                2WD 4WD 
+              </td>
+              <td
+                aria-label="price"
+              >
+                <span>
+                  $999,921,212
+                </span>
+              </td>
+              <td
+                aria-label="delete button"
+              >
+                <i
+                  class="fa fa-times"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+`;

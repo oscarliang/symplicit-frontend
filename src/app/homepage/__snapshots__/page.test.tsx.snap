@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomepageContainer /> renders 1`] = `
+<div
+  class="col"
+>
+  <div
+    class="card"
+  >
+    <div
+      class="card-header"
+    >
+      <strong>
+        Car
+      </strong>
+       Management
+    </div>
+    <div
+      class="card-body"
+    >
+      <form
+        action=""
+        class="form-horizontal"
+        method="post"
+      >
+        <div
+          class="required row mb-3"
+        >
+          <div
+            class="col-md-3"
+          >
+            <label
+              class="form-label"
+              for="hf-name required"
+            >
+              Name
+            </label>
+          </div>
+          <div
+            class="col-12 col-md-9"
+          >
+            <input
+              class="is-invalid form-control"
+              id="hf-name"
+              name="name"
+              placeholder="Enter Car Name..."
+              type="text"
+              value=""
+            />
+            <small
+              class="help-block form-text text-muted"
+            >
+              Please enter car name
+            </small>
+          </div>
+        </div>
+        <div
+          class="required row mb-3"
+        >
+          <div
+            class="col-md-3"
+          >
+            <label
+              class="form-label"
+              for="hf-brand"
+            >
+              Brand
+            </label>
+          </div>
+          <div
+            class="col-12 col-md-9"
+          >
+            <select
+              class="form-control is-invalid form-select"
+              id="hf-brand"
+              name="brand"
+            >
+              <option
+                value=""
+              >
+                Please select
+              </option>
+              <option
+                value="PORSCHE"
+              >
+                PORSCHE
+              </option>
+              <option
+                value="BMW"
+              >
+                BMW
+              </option>
+              <option
+                value="AUDI"
+              >
+                AUDI
+              </option>
+            </select>
+            <small
+              class="help-block form-text text-muted"
+            >
+              Please enter car brand
+            </small>
+          </div>
+        </div>
+        <div
+          class="required row mb-3"
+        >
+          <div
+            class="col-md-3"
+          >
+            <label
+              class="form-label"
+              for="hf-drive"
+            >
+              Drive
+            </label>
+          </div>
+          <div
+            class="required col-12 col-md-9"
+          >
+            <div
+              class="is-invalid form-control col-md-9"
+            >
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input form-check-input"
+                  id="inline-2WD"
+                  name="drive2wd"
+                  type="checkbox"
+                />
+                <label
+                  class="form-check-label form-check-label"
+                  for="inline-2WD"
+                >
+                  2WD
+                </label>
+              </div>
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input form-check-input"
+                  id="inline-4WD"
+                  name="drive4wd"
+                  type="checkbox"
+                />
+                <label
+                  class="form-check-label form-check-label"
+                  for="inline-4WD"
+                >
+                  4WD
+                </label>
+              </div>
+              <div
+                class="form-check form-check-inline"
+              >
+                <input
+                  class="form-check-input form-check-input"
+                  id="inline-AWD"
+                  name="driveawd"
+                  type="checkbox"
+                />
+                <label
+                  class="form-check-label form-check-label"
+                  for="inline-AWD"
+                >
+                  AWD
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="required row mb-3"
+        >
+          <div
+            class="col-md-3"
+          >
+            <label
+              class="form-label"
+              for="hf-price"
+            >
+              Price
+            </label>
+          </div>
+          <div
+            class="required col-12 col-md-9"
+          >
+            <input
+              class="is-invalid form-control"
+              id="hf-price"
+              name="price"
+              placeholder="Enter Price..."
+              type="text"
+              value=""
+            />
+            <small
+              class="help-block form-text text-muted"
+            >
+              Please enter car price.
+              <strong
+                class="ml-2"
+              >
+                Note
+              </strong>
+              : only allow input numbers
+            </small>
+          </div>
+        </div>
+        <div
+          class="row mb-3"
+        >
+          <div
+            class="col-md-3"
+          >
+            <label
+              class="form-label"
+              for="hf-image"
+            >
+              Image Url
+            </label>
+          </div>
+          <div
+            class="col-12 col-md-9"
+          >
+            <input
+              class="form-control"
+              id="hf-image"
+              name="image"
+              placeholder="Enter Image Url..."
+              type="text"
+              value=""
+            />
+            <small
+              class="help-block form-text text-muted"
+            >
+              Please enter image url.
+              <strong
+                class="ml-2"
+              >
+                Note
+              </strong>
+              : only allow web image url
+            </small>
+          </div>
+        </div>
+      </form>
+      <div>
+        <div
+          class="alert alert-primary fade"
+          role="alert"
+        >
+          test
+        </div>
+      </div>
+    </div>
+    <div
+      class="card-footer"
+    >
+      <button
+        class="btn btn-primary btn-sm"
+        data-testid="add-car-btn"
+        type="submit"
+      >
+        <i
+          class="fa fa-dot-circle-o"
+        />
+         Add Car
+      </button>
+      <button
+        class="offset-sm-1 btn btn-primary btn-sm disabled"
+        data-testid="update-car-btn"
+        disabled=""
+        type="submit"
+      >
+        <i
+          class="fa fa-dot-circle-o"
+        />
+         Update Car
+      </button>
+      <button
+        class="offset-sm-1 float-right btn btn-danger btn-sm"
+        data-testid="reset-car-btn"
+        type="submit"
+      >
+        <i
+          class="fa fa-dot-circle-o"
+        />
+         Reset
+      </button>
+    </div>
+  </div>
+</div>
+`;

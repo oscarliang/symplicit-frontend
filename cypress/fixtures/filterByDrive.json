@@ -1,0 +1,38 @@
+{
+	"data": {
+		"getCarByDrive": [
+			{
+				"id": 220,
+				"brand": "bmw",
+				"name": "BMW 4-series News and Reviews",
+				"price": 130000,
+				"drive": "4wd|awd",
+				"imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/media/683956/2018-bmw-4-series-idrive-infotainment-review-car-and-driver-photo-683962-s-original.jpg?crop=1xw:1xh;center,center&resize=740:*"
+			},
+			{
+				"id": 300,
+				"brand": "audi",
+				"name": "Audi S5 Auto quattro",
+				"price": 115000,
+				"drive": "2wd|4wd|awd",
+				"imageUrl": "https://hips.hearstapps.com/hmg-prod/images/2018-audi-a5-sportback-01-placement-1524499430.jpg?crop=1xw:1xh;center,center&resize=900:*"
+			},
+			{
+				"id": 310,
+				"brand": "audi",
+				"name": "Audi TT Sport Manual",
+				"price": 80000,
+				"drive": "2wd|4wd",
+				"imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/16q1/665019/2016-audi-tts-test-review-car-and-driver-photo-665850-s-original.jpg"
+			},
+			{
+				"id": 180,
+				"brand": "PORSCHE",
+				"name": "Porsche 718",
+				"price": 70000,
+				"drive": "2wd|4wd",
+				"imageUrl": "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/16q1/665019/2016-audi-tts-test-review-car-and-driver-photo-665850-s-original.jpg"
+			}
+		]
+	}
+}
