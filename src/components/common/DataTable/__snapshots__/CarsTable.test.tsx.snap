@@ -4,9 +4,7 @@ exports[`<CarsTable /> renders 1`] = `
 <div
   class="col"
 >
-  <div
-    class="row"
-  >
+  <div>
     <div
       class="card"
     >

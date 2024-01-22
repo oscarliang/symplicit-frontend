@@ -125,7 +125,7 @@ function CarsTable({ allCars }: CarsTableProps): React.ReactElement {
 
   return (
     <Col>
-      <Row>
+      <div>
         <Card>
           <CardHeader>
             <i className='fa fa-align-justify' /> All Cars
@@ -153,12 +153,13 @@ function CarsTable({ allCars }: CarsTableProps): React.ReactElement {
           onClickYesButton={onClickYesButton}
           title={confirmTitle}
         />
-      </Row>
+      </div>
       <Row>
         <Col>
           <Pagination>
             {Array.from({
-              length: Math.floor((Object.values(allCars).length - 1) / pageSize) + 1,
+              length:
+                Math.floor((Object.values(allCars).length - 1) / pageSize) + 1,
             }).map((page, i) => (
               // eslint-disable-next-line react/no-array-index-key
               <PaginationItem active={i === currentPage} key={i}>
