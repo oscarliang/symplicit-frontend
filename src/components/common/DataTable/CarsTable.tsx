@@ -158,7 +158,7 @@ function CarsTable({ allCars }: CarsTableProps): React.ReactElement {
         <Col>
           <Pagination>
             {Array.from({
-              length: Math.floor(Object.values(allCars).length / pageSize) + 1,
+              length: Math.floor((Object.values(allCars).length - 1) / pageSize) + 1,
             }).map((page, i) => (
               // eslint-disable-next-line react/no-array-index-key
               <PaginationItem active={i === currentPage} key={i}>
