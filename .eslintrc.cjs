@@ -193,6 +193,12 @@ module.exports = {
       },
       plugins: ['deprecation', ...commonPlugins],
       rules: {
+        "@typescript-eslint/no-misused-promises": [
+          "error",
+          {
+            "checksVoidReturn": false
+          }
+        ],
         '@typescript-eslint/member-ordering': [
           'warn',
           {

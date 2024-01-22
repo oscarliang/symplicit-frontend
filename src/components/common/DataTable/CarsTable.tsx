@@ -1,7 +1,17 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { NumericFormat } from 'react-number-format';
-import { Card, CardBody, CardHeader, Col, Table } from 'reactstrap';
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+  Row,
+  Table,
+} from 'reactstrap';
 
 import { removeCarAction } from '../../../ducks/cars';
 import { SelectCarType, updateMessage } from '../../../ducks/global';
@@ -22,14 +32,21 @@ function CarsTable({ allCars }: CarsTableProps): React.ReactElement {
     null,
   );
   const [open, setOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const [confirmTitle, setConfirmTitle] = useState('');
   const [confirmMessage, setConfirmMessage] = useState('');
+  const pageSize = 6;
 
   const onClickConfirmDelete = (car: CarRequest) => {
     setOpen(true);
     setConfirmTitle('Warning');
     setConfirmMessage(`Are you sure to delete ${car.name}?`);
     setSelectDeleteCar(car);
+  };
+
+  const handlePageClick = (e: React.MouseEvent, index: number) => {
+    e.preventDefault();
+    setCurrentPage(index);
   };
 
   const onClickCloseConfirm = () => {
@@ -64,7 +81,7 @@ function CarsTable({ allCars }: CarsTableProps): React.ReactElement {
 
   const renderTableBody = () => {
     const cars = Object.values(allCars) as unknown as SelectCarType[];
-    return cars.map(
+    return cars.slice(currentPage * pageSize, (currentPage + 1) * pageSize).map(
       (car: SelectCarType, index: number) =>
         car && (
           <tr
@@ -108,33 +125,51 @@ function CarsTable({ allCars }: CarsTableProps): React.ReactElement {
 
   return (
     <Col>
-      <Card>
-        <CardHeader>
-          <i className='fa fa-align-justify' /> All Cars
-        </CardHeader>
-        <CardBody>
-          <Table bordered hover responsive size='sm' striped>
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Price</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>{renderTableBody()}</tbody>
-          </Table>
-        </CardBody>
-      </Card>
-      <Confirm
-        body={confirmMessage}
-        isOpen={open}
-        onClickClose={onClickCloseConfirm}
-        onClickYesButton={onClickYesButton}
-        title={confirmTitle}
-      />
+      <Row>
+        <Card>
+          <CardHeader>
+            <i className='fa fa-align-justify' /> All Cars
+          </CardHeader>
+          <CardBody>
+            <Table bordered hover responsive size='sm' striped>
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Brand</th>
+                  <th>Model</th>
+                  <th>Price</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>{renderTableBody()}</tbody>
+            </Table>
+          </CardBody>
+        </Card>
+        <Confirm
+          body={confirmMessage}
+          isOpen={open}
+          onClickClose={onClickCloseConfirm}
+          onClickYesButton={onClickYesButton}
+          title={confirmTitle}
+        />
+      </Row>
+      <Row>
+        <Col>
+          <Pagination>
+            {Array.from({
+              length: Math.floor(Object.values(allCars).length / pageSize) + 1,
+            }).map((page, i) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <PaginationItem active={i === currentPage} key={i}>
+                <PaginationLink href='#' onClick={(e) => handlePageClick(e, i)}>
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+          </Pagination>
+        </Col>
+      </Row>
     </Col>
   );
 }

@@ -19,9 +19,7 @@ exports[`<HomepageContainer /> renders 1`] = `
       class="card-body"
     >
       <form
-        action=""
         class="form-horizontal"
-        method="post"
       >
         <div
           class="required row mb-3"
@@ -40,12 +38,13 @@ exports[`<HomepageContainer /> renders 1`] = `
             class="col-12 col-md-9"
           >
             <input
-              class="is-invalid form-control"
-              id="hf-name"
+              class="form-control"
               name="name"
               placeholder="Enter Car Name..."
               type="text"
-              value=""
+            />
+            <div
+              class="invalid-feedback"
             />
             <small
               class="help-block form-text text-muted"
@@ -71,8 +70,7 @@ exports[`<HomepageContainer /> renders 1`] = `
             class="col-12 col-md-9"
           >
             <select
-              class="form-control is-invalid form-select"
-              id="hf-brand"
+              class="form-control"
               name="brand"
             >
               <option
@@ -96,6 +94,9 @@ exports[`<HomepageContainer /> renders 1`] = `
                 AUDI
               </option>
             </select>
+            <div
+              class="invalid-feedback"
+            />
             <small
               class="help-block form-text text-muted"
             >
@@ -120,16 +121,16 @@ exports[`<HomepageContainer /> renders 1`] = `
             class="required col-12 col-md-9"
           >
             <div
-              class="is-invalid form-control col-md-9"
+              class="col-md-9"
             >
               <div
                 class="form-check form-check-inline"
               >
                 <input
-                  class="form-check-input form-check-input"
-                  id="inline-2WD"
-                  name="drive2wd"
+                  class="form-check-input"
+                  name="drive"
                   type="checkbox"
+                  value="2wd"
                 />
                 <label
                   class="form-check-label form-check-label"
@@ -142,10 +143,10 @@ exports[`<HomepageContainer /> renders 1`] = `
                 class="form-check form-check-inline"
               >
                 <input
-                  class="form-check-input form-check-input"
-                  id="inline-4WD"
-                  name="drive4wd"
+                  class="form-check-input"
+                  name="drive"
                   type="checkbox"
+                  value="4wd"
                 />
                 <label
                   class="form-check-label form-check-label"
@@ -158,10 +159,10 @@ exports[`<HomepageContainer /> renders 1`] = `
                 class="form-check form-check-inline"
               >
                 <input
-                  class="form-check-input form-check-input"
-                  id="inline-AWD"
-                  name="driveawd"
+                  class="form-check-input"
+                  name="drive"
                   type="checkbox"
+                  value="awd"
                 />
                 <label
                   class="form-check-label form-check-label"
@@ -171,6 +172,9 @@ exports[`<HomepageContainer /> renders 1`] = `
                 </label>
               </div>
             </div>
+            <div
+              class="invalid-feedback"
+            />
           </div>
         </div>
         <div
@@ -190,12 +194,12 @@ exports[`<HomepageContainer /> renders 1`] = `
             class="required col-12 col-md-9"
           >
             <input
-              class="is-invalid form-control"
-              id="hf-price"
+              class="form-control"
               name="price"
-              placeholder="Enter Price..."
               type="text"
-              value=""
+            />
+            <div
+              class="invalid-feedback"
             />
             <small
               class="help-block form-text text-muted"
@@ -228,11 +232,11 @@ exports[`<HomepageContainer /> renders 1`] = `
           >
             <input
               class="form-control"
-              id="hf-image"
-              name="image"
-              placeholder="Enter Image Url..."
+              name="imageUrl"
               type="text"
-              value=""
+            />
+            <div
+              class="invalid-feedback"
             />
             <small
               class="help-block form-text text-muted"

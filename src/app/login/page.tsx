@@ -40,10 +40,6 @@ function LoginContainer(): React.ReactElement {
   const dispatch = useAppDispatch();
 
   const onclickSubmit = (data) => {
-    // const user = {
-    //   password,
-    //   username,
-    // } as User;
     const user = data as User;
     loginService(user)
       .then((login) => {
@@ -77,7 +73,6 @@ function LoginContainer(): React.ReactElement {
       <Container>
         <Row className='justify-content-center'>
           <Col md='8'>
-            {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
             <Form onSubmit={handleSubmit(onclickSubmit)}>
               <CardGroup className='mb-4'>
                 <Card className='p-4'>

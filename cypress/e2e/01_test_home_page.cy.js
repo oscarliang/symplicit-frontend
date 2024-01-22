@@ -11,7 +11,7 @@ describe('Test home page', () => {
 
   it('expect - load all of the cars', () => {
     cy.get('table tbody tr').should(($p) => {
-      expect($p).to.have.length(9);
+      expect($p).to.have.length(6);
     });
   });
 
@@ -22,10 +22,11 @@ describe('Test home page', () => {
   });
 
   it('expect - add a car into car list', () => {
-    cy.get('#hf-name').type('Porsche 718');
-    cy.get('#hf-brand').select('PORSCHE');
-    cy.get('#inline-2WD').check();
-    cy.get('#hf-price').type('78000.0');
+    cy.get('input[name="name"]').type('Porsche 718');
+    cy.get('select[name="brand"]').select('PORSCHE');
+    cy.get('input[value="2wd"]').check();
+    cy.get('input[name="price"]').type('78000.0');
+    cy.get('input[name="imageUrl"]').type('test');
 
     cy.get("button[type='submit']")
       .first()
@@ -38,7 +39,7 @@ describe('Test home page', () => {
     cy.get("button[type='submit']").first().click();
     cy.wait('@createCar').then(() => {
       cy.get('table tbody tr').should(($p) => {
-        expect($p).to.have.length(10);
+        expect($p).to.have.length(6);
       });
     });
   });

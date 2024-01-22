@@ -15,7 +15,7 @@ describe('Test search page', () => {
 
   it('expect - load all of the cars', () => {
     cy.get('table tbody tr').should(($p) => {
-      expect($p).to.have.length(9);
+      expect($p).to.have.length(6);
     });
   });
 

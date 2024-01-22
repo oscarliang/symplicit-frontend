@@ -5,6 +5,7 @@ import { clsx } from 'clsx';
 import { normalize } from 'normalizr';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import {
   Alert,
   Button,
@@ -16,7 +17,6 @@ import {
   Form,
   FormGroup,
   FormText,
-  Input,
   Label,
 } from 'reactstrap';
 
@@ -43,17 +43,25 @@ interface HomepageContainerProps {
   roleModules: Record<string, number>;
 }
 
+type FormValues = {
+  brand: string;
+  drive: string[];
+  imageUrl: string;
+  name: string;
+  price: string;
+};
+
 function HomepageContainer({
   allCars,
   roleModules,
 }: HomepageContainerProps): React.ReactElement {
-  const [name, setName] = useState('');
-  const [brand, setBrand] = useState('');
-  const [drive2wd, setDrive2wd] = useState(false);
-  const [drive4wd, setDrive4wd] = useState(false);
-  const [driveawd, setDriveawd] = useState(false);
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState('');
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    reset,
+    setValue,
+  } = useForm<FormValues>();
   const [cars, setCars] = useState<Record<number, CarRequest>>({});
   const [isAddCarEnabled, setIsAddCarEnabled] = useState(true);
   const [isUpdateCarEnabled, setIsUpdateCarEnabled] = useState(false);
@@ -99,46 +107,36 @@ function HomepageContainer({
     if (!prevSelectedCar) return;
 
     if (prevSelectedCar !== selectedCar) {
-      setName(selectedCar.name);
-      setBrand(selectedCar.brand);
+      setValue('name', selectedCar.name);
+      setValue('brand', selectedCar.brand);
       const { drive } = selectedCar;
       if (drive !== '') {
-        setDrive2wd(drive.indexOf('2wd') !== -1);
-        setDrive4wd(drive.indexOf('4wd') !== -1);
-        setDriveawd(drive.indexOf('awd') !== -1);
+        const models = drive.split('|');
+        setValue('drive', models);
       }
-      setPrice(selectedCar.price);
-      setImage(selectedCar.imageUrl);
+      setValue('price', selectedCar.price);
+      setValue('imageUrl', selectedCar.imageUrl);
       setIsUpdateCarEnabled(true);
       setIsAddCarEnabled(false);
     }
-  }, [
-    selectedCar,
-    name,
-    brand,
-    drive2wd,
-    drive4wd,
-    driveawd,
-    price,
-    prevSelectedCar,
-  ]);
+  }, [selectedCar, prevSelectedCar, setValue]);
 
-  const onclickSubmit = () => {
-    let drive = '';
-    drive += drive2wd ? '2wd|' : '';
-    drive += drive4wd ? '4wd|' : '';
-    drive += driveawd ? 'awd|' : '';
+  const atLeastOneMediumChecked = (selectedMediums: string[]) =>
+    selectedMediums.length > 0;
+
+  const onclickSubmit = (data: FormValues) => {
+    const driveTypes = data.drive.join('|');
     const car = {
-      brand,
-      drive,
+      brand: data.brand,
+      drive: driveTypes,
       id:
         Math.floor(
           // eslint-disable-next-line rulesdir/prefer-use-date
           new Date().valueOf() / 1000000,
         ) + Math.floor(Math.random() * 10000),
-      imageUrl: image,
-      name,
-      price,
+      imageUrl: data.imageUrl,
+      name: data.name,
+      price: data.price,
     };
 
     saveCarService(car)
@@ -156,19 +154,16 @@ function HomepageContainer({
       });
   };
 
-  const updateCar = () => {
-    let drive = '';
-    drive += drive2wd ? '2wd|' : '';
-    drive += drive4wd ? '4wd|' : '';
-    drive += driveawd ? 'awd|' : '';
-    const car: CarRequest = {
+  const updateCar = (data: FormValues) => {
+    const driveTypes = data.drive.join('|');
+    const car = {
       _id: selectedCar._id,
-      brand,
-      drive,
+      brand: data.brand,
+      drive: driveTypes,
       id: selectedCar.id,
-      imageUrl: image,
-      name,
-      price,
+      imageUrl: data.imageUrl,
+      name: data.name,
+      price: data.price,
     };
 
     updateCarService(car)
@@ -188,52 +183,16 @@ function HomepageContainer({
   const onClickReset = () => {
     setIsUpdateCarEnabled(false);
     setIsAddCarEnabled(true);
-    setName('');
-    setBrand('');
-    setDrive2wd(false);
-    setDrive4wd(false);
-    setDriveawd(false);
-    setPrice('');
-    setImage('');
+    reset();
     dispatch(updateMessageService(''));
-  };
-
-  const handleChangeName = (e: React.FormEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value);
-  };
-
-  const handleChangeBrand = (e: React.FormEvent<HTMLInputElement>) => {
-    setBrand(e.currentTarget.value);
-  };
-
-  const handleChangeImage = (e: React.FormEvent<HTMLInputElement>) => {
-    setImage(e.currentTarget.value);
-  };
-
-  const handleChangeDrive2wd = (e: React.FormEvent<HTMLInputElement>) => {
-    setDrive2wd(e.currentTarget.checked);
-  };
-
-  const handleChangeDrive4wd = (e: React.FormEvent<HTMLInputElement>) => {
-    setDrive4wd(e.currentTarget.checked);
-  };
-
-  const handleChangeDriveawd = (e: React.FormEvent<HTMLInputElement>) => {
-    setDriveawd(e.currentTarget.checked);
-  };
-
-  const handlePriceChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const currentPrice = e.currentTarget.value;
-    // if (!validator.isNumeric(currentPrice)) {
-    //   currentPrice = ''
-    // }
-    setPrice(currentPrice);
   };
 
   const showHideAlert = () =>
     message !== '' && (
       <div>
-        <Alert color='primary'>{message}</Alert>
+        <Alert color='primary' isOpen>
+          {message}
+        </Alert>
       </div>
     );
 
@@ -244,21 +203,24 @@ function HomepageContainer({
           <strong>Car</strong> Management
         </CardHeader>
         <CardBody>
-          <Form action='' className='form-horizontal' method='post'>
+          <Form className='form-horizontal'>
             <FormGroup className='required' row>
               <Col md='3'>
                 <Label htmlFor='hf-name required'>Name</Label>
               </Col>
               <Col md='9' xs='12'>
-                <Input
-                  className={name === '' ? 'is-invalid' : ''}
-                  id='hf-name'
-                  name='name'
-                  onChange={handleChangeName}
+                <input
+                  className={clsx('form-control', {
+                    'is-invalid': errors.name,
+                  })}
                   placeholder='Enter Car Name...'
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  {...register('name', { required: true })}
                   type='text'
-                  value={name}
                 />
+                <div className='invalid-feedback'>
+                  {errors.name && <span>This field is required</span>}
+                </div>
                 <FormText className='help-block'>
                   Please enter car name
                 </FormText>
@@ -269,21 +231,21 @@ function HomepageContainer({
                 <Label htmlFor='hf-brand'>Brand</Label>
               </Col>
               <Col md='9' xs='12'>
-                <Input
+                <select
                   className={clsx('form-control', {
-                    'is-invalid': brand === '',
+                    'is-invalid': errors.brand,
                   })}
-                  id='hf-brand'
-                  name='brand'
-                  onChange={handleChangeBrand}
-                  type='select'
-                  value={brand.toUpperCase()}
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  {...register('brand', { required: true })}
                 >
                   <option value=''>Please select</option>
                   <option value='PORSCHE'>PORSCHE</option>
                   <option value='BMW'>BMW</option>
                   <option value='AUDI'>AUDI</option>
-                </Input>
+                </select>
+                <div className='invalid-feedback'>
+                  {errors.brand && <span>This field is required</span>}
+                </div>
                 <FormText className='help-block'>
                   Please enter car brand
                 </FormText>
@@ -295,21 +257,18 @@ function HomepageContainer({
               </Col>
               <Col className='required' md='9' xs='12'>
                 <Col
-                  className={
-                    !drive2wd && !drive4wd && !driveawd
-                      ? 'is-invalid form-control'
-                      : ''
-                  }
+                  className={errors.drive ? 'is-invalid form-control' : ''}
                   md='9'
                 >
                   <FormGroup check inline>
-                    <Input
-                      checked={drive2wd}
+                    <input
                       className='form-check-input'
-                      id='inline-2WD'
-                      name='drive2wd'
-                      onChange={handleChangeDrive2wd}
+                      /* eslint-disable-next-line react/jsx-props-no-spreading */
+                      {...register('drive', {
+                        validate: atLeastOneMediumChecked,
+                      })}
                       type='checkbox'
+                      value='2wd'
                     />
                     <Label
                       check
@@ -320,13 +279,14 @@ function HomepageContainer({
                     </Label>
                   </FormGroup>
                   <FormGroup check inline>
-                    <Input
-                      checked={drive4wd}
+                    <input
                       className='form-check-input'
-                      id='inline-4WD'
-                      name='drive4wd'
-                      onChange={handleChangeDrive4wd}
+                      /* eslint-disable-next-line react/jsx-props-no-spreading */
+                      {...register('drive', {
+                        validate: atLeastOneMediumChecked,
+                      })}
                       type='checkbox'
+                      value='4wd'
                     />
                     <Label
                       check
@@ -337,13 +297,14 @@ function HomepageContainer({
                     </Label>
                   </FormGroup>
                   <FormGroup check inline>
-                    <Input
-                      checked={driveawd}
+                    <input
                       className='form-check-input'
-                      id='inline-AWD'
-                      name='driveawd'
-                      onChange={handleChangeDriveawd}
+                      /* eslint-disable-next-line react/jsx-props-no-spreading */
+                      {...register('drive', {
+                        validate: atLeastOneMediumChecked,
+                      })}
                       type='checkbox'
+                      value='awd'
                     />
                     <Label
                       check
@@ -354,6 +315,11 @@ function HomepageContainer({
                     </Label>
                   </FormGroup>
                 </Col>
+                <div className='invalid-feedback'>
+                  {errors.drive && (
+                    <span>At least one drive selection is required</span>
+                  )}
+                </div>
               </Col>
             </FormGroup>
             <FormGroup className='required' row>
@@ -361,15 +327,17 @@ function HomepageContainer({
                 <Label htmlFor='hf-price'>Price</Label>
               </Col>
               <Col className='required' md='9' xs='12'>
-                <Input
-                  className={price === '' ? 'is-invalid' : ''}
-                  id='hf-price'
-                  name='price'
-                  onChange={handlePriceChange}
-                  placeholder='Enter Price...'
+                <input
+                  className={clsx('form-control', {
+                    'is-invalid': errors.price,
+                  })}
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  {...register('price', { required: true })}
                   type='text'
-                  value={price}
                 />
+                <div className='invalid-feedback'>
+                  {errors.price && <span>This field is required</span>}
+                </div>
                 <FormText className='help-block'>
                   Please enter car price.
                   <strong className='ml-2'>Note</strong>: only allow input
@@ -382,14 +350,17 @@ function HomepageContainer({
                 <Label htmlFor='hf-image'>Image Url</Label>
               </Col>
               <Col md='9' xs='12'>
-                <Input
-                  id='hf-image'
-                  name='image'
-                  onChange={handleChangeImage}
-                  placeholder='Enter Image Url...'
+                <input
+                  className={clsx('form-control', {
+                    'is-invalid': errors.imageUrl,
+                  })}
+                  /* eslint-disable-next-line react/jsx-props-no-spreading */
+                  {...register('imageUrl', { required: true })}
                   type='text'
-                  value={image}
                 />
+                <div className='invalid-feedback'>
+                  {errors.imageUrl && <span>This field is required</span>}
+                </div>
                 <FormText className='help-block'>
                   Please enter image url.
                   <strong className='ml-2'>Note</strong>: only allow web image
@@ -405,7 +376,7 @@ function HomepageContainer({
             color='primary'
             data-testid='add-car-btn'
             disabled={!isAddCarEnabled}
-            onClick={onclickSubmit}
+            onClick={handleSubmit(onclickSubmit)}
             size='sm'
             type='submit'
           >
@@ -416,7 +387,7 @@ function HomepageContainer({
             color='primary'
             data-testid='update-car-btn'
             disabled={!isUpdateCarEnabled}
-            onClick={updateCar}
+            onClick={handleSubmit(updateCar)}
             size='sm'
             type='submit'
           >
