@@ -27,7 +27,7 @@ const nextConfig = {
   },
   output: 'standalone',
   poweredByHeader: false,
-  reactStrictMode: true,
+  reactStrictMode: false,
   sassOptions: {
     includePaths: [path.join(__dirname, 'scss')],
   },

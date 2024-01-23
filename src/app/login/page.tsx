@@ -4,6 +4,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { clsx } from 'clsx';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
+import { useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import {
   Alert,
@@ -30,6 +31,7 @@ import useToken from '../../utils/hooks';
 
 function LoginContainer(): React.ReactElement {
   const { message } = useAppSelector((state) => state.global);
+  const { isAuthenticated } = useAppSelector((state) => state.authenticated)
   const {
     formState: { errors },
     handleSubmit,
@@ -38,6 +40,12 @@ function LoginContainer(): React.ReactElement {
   const { setToken } = useToken();
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/homepage')
+    }
+  },[isAuthenticated, router])
 
   const onclickSubmit = (data) => {
     const user = data as User;
@@ -52,8 +60,6 @@ function LoginContainer(): React.ReactElement {
         dispatch(updateMessage(''));
         dispatch(updatePermissions(login.modules as unknown as Permission[]));
         dispatch(loginAction(true));
-        // eslint-disable-next-line no-void
-        void router.push('/homepage');
       })
       .catch((error: Error | AxiosError) => {
         logOffService();
